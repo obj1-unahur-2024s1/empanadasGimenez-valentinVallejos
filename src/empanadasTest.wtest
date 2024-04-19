@@ -1,0 +1,35 @@
+import empanadas.*
+
+test "pagar suldos" {
+	
+	baigorria.canDeEmpanadasVendidas(100)
+	gimenez.pagarA(baigorria)
+	
+	assert.that(baigorria.totalCobrado() ==  15000)
+	
+	baigorria.canDeEmpanadasVendidas(100)
+	gimenez.pagarA(baigorria)
+	
+	assert.that(baigorria.totalCobrado() ==  30000)
+}
+
+test "galvan" {
+	galvan.gastar(40000)
+	assert.that(galvan.totalDeuda() == 40000)
+	assert.that(galvan.totalDinero() == 0)
+	
+	galvan.gastar(80000)
+	assert.that(galvan.totalDeuda() == 120000)
+	
+	galvan.cobrarSueldo()
+	assert.that(galvan.totalDeuda() == 0)
+	assert.that(galvan.totalDinero() == 30000)
+	
+	galvan.gastar(250000)
+	assert.that(galvan.totalDeuda() == 220000)
+	assert.that(galvan.totalDinero() == 0)
+	
+	galvan.cobrarSueldo()
+	assert.that(galvan.totalDeuda() == 70000)
+	assert.that(galvan.totalDinero() == 0)
+}
